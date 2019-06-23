@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7779497761847976806}
   - component: {fileID: 2362930326690573230}
   - component: {fileID: 2905617788514754595}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MeteorSmall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4a30dd2aed76f4cb02be7c28c185b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnedObjectOnDestroy: {fileID: 0}
 --- !u!1001 &1003942958476883251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b61e9bb48fc721c4bada2d5a4aabc69c, type: 3}
       propertyPath: m_Name
       value: meteorFull
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b61e9bb48fc721c4bada2d5a4aabc69c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b61e9bb48fc721c4bada2d5a4aabc69c, type: 3}
       propertyPath: m_LocalPosition.x

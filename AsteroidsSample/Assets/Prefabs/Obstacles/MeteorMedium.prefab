@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8179546033807340301}
   - component: {fileID: 5764764731298942302}
   - component: {fileID: 4633713058785407111}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MeteorMedium
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b61e9bb48fc721c4bada2d5a4aabc69c, type: 3}
       propertyPath: m_Name
       value: meteorFull
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b61e9bb48fc721c4bada2d5a4aabc69c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b61e9bb48fc721c4bada2d5a4aabc69c, type: 3}
       propertyPath: m_LocalPosition.x

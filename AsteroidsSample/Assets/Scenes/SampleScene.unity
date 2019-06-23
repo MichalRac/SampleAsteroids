@@ -314,7 +314,7 @@ MonoBehaviour:
   - {fileID: 2354627844688426484, guid: 3b43c507726203343a8375823fae6b2f, type: 3}
   - {fileID: 4676102090561644719, guid: 157c70c7ad903bc4b8f26f42b4a6a06e, type: 3}
   _timeToFirstSpawn: 0
-  timeBetweenSpawns: 0.05
+  timeBetweenSpawns: 2
 --- !u!4 &1504149009
 Transform:
   m_ObjectHideFlags: 0
