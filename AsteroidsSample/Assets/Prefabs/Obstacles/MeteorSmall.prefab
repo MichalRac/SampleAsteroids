@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8193034664346095606}
   - component: {fileID: 7779497761847976806}
   - component: {fileID: 2362930326690573230}
+  - component: {fileID: 2905617788514754595}
   m_Layer: 0
   m_Name: MeteorSmall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +42,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4676102090561644719}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 6
@@ -62,6 +63,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &2905617788514754595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4676102090561644719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4a30dd2aed76f4cb02be7c28c185b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1003942958476883251
 PrefabInstance:
   m_ObjectHideFlags: 0

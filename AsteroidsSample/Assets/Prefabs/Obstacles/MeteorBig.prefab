@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3993091690942216212}
   - component: {fileID: 3235151157883565926}
   - component: {fileID: 7508910025618176131}
+  - component: {fileID: 7487480955030237939}
   m_Layer: 0
   m_Name: MeteorBig
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,6 +63,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 16.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7487480955030237939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449537740564881229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4a30dd2aed76f4cb02be7c28c185b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnedObjectOnDestroy: {fileID: 2354627844688426484, guid: 3b43c507726203343a8375823fae6b2f,
+    type: 3}
 --- !u!1001 &5419931448723882705
 PrefabInstance:
   m_ObjectHideFlags: 0

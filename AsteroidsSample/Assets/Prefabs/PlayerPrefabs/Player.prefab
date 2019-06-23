@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0899aabf915d2004a9deae16f5844912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 150
+  _movementSpeed: 100
   _rotationSpeed: 300
 --- !u!114 &1395418387883898632
 MonoBehaviour:
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9e78fc1b81d2d43941860b7e406865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bolt: {fileID: 6328861708139078096, guid: 18441c6f8d386304ea262fccffc2a3c8, type: 3}
+  _bolt: {fileID: 2135891472393574677, guid: 18441c6f8d386304ea262fccffc2a3c8, type: 3}
   _boltSpawnPoint: {fileID: 1761079514694655865}
 --- !u!1 &7139117847576964439
 GameObject:
