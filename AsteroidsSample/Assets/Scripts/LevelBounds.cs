@@ -5,25 +5,25 @@ using UnityEngine;
 public class LevelBounds : MonoBehaviour
 {
     private const float BUFFOR_VALUE_AFTER_MOVING = 1.0f; 
+    [HideInInspector] public static float verExtent;
+    [HideInInspector] public static float horExtent;
     private BoxCollider boxCollider;
-    protected float verExtent;
-    protected float horExtent;
 
 
     private void Awake()
     {
-        verExtent = (Camera.main.orthographicSize * 2);
+        verExtent = Camera.main.orthographicSize;
         horExtent = (verExtent * Screen.width / Screen.height);
 
         boxCollider = GetComponent<BoxCollider>();
-        boxCollider.size = new Vector3(horExtent, 50.0f, verExtent);
+        boxCollider.size = new Vector3(horExtent * 2, 50.0f, verExtent * 2);
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
         Vector3 targetPosition = other.transform.position;
 
-        if (other.transform.position.x >= horExtent / 2 || other.transform.position.x <= -horExtent / 2)
+        if (other.transform.position.x >= horExtent || other.transform.position.x <= -horExtent)
         {
             targetPosition.x = -other.transform.position.x;
 
@@ -33,7 +33,7 @@ public class LevelBounds : MonoBehaviour
                 targetPosition.x += BUFFOR_VALUE_AFTER_MOVING;
         }
 
-        if (other.transform.position.z >= verExtent / 2 || other.transform.position.z <= -verExtent / 2)
+        if (other.transform.position.z >= verExtent|| other.transform.position.z <= -verExtent)
         {
             targetPosition.z = -other.transform.position.z;
 

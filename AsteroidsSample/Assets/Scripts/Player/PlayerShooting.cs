@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject _bolt;
+    [SerializeField] private Rigidbody _bolt;
     [SerializeField] private Transform _boltSpawnPoint;
+    private Rigidbody rb;
     private bool _canShoot;
     private float _shootingSpeed;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject newBolt = Instantiate(_bolt, _boltSpawnPoint.position, _boltSpawnPoint.rotation);
+            Rigidbody newBolt = Instantiate(_bolt, _boltSpawnPoint.position, _boltSpawnPoint.rotation);
+            newBolt.velocity = rb.velocity;
         }
     }
 

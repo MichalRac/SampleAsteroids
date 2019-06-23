@@ -7,6 +7,11 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] protected float _movementSpeed;
     [SerializeField] protected float _rotationSpeed;
 
+    private void Awake()
+    {
+        ForwardingObjectsBehaviour.basePlayerMovementSpeed = _movementSpeed;
+    }
+
     public void InputMovement()
     {
         float movementValue = Input.GetAxis("Vertical");

@@ -6,18 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class ForwardingObjectsBehaviour : MonoBehaviour
 {
-    [SerializeField] private float _movementSpeed;
-    private Rigidbody _rb;
-
+    [SerializeField] public static float basePlayerMovementSpeed;  // The base speed is defined as Player Movement Speed
+    protected Rigidbody _rb;
+    
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
-        _rb.velocity = _rb.transform.forward * _movementSpeed;
+        _rb.velocity = transform.forward * basePlayerMovementSpeed;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
