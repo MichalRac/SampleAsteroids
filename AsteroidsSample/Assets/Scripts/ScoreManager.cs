@@ -23,7 +23,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        TotalScore = 0;
         UIManager.Instance.UpdateScore();
     }
 
@@ -39,5 +38,10 @@ public class ScoreManager : MonoBehaviour
         {
             HighScore = TotalScore;
         }
+    }
+
+    public void ResetScore()
+    {
+        TotalScore = 0;
     }
 }

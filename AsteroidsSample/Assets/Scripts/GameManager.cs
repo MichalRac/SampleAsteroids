@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         _wrapArea = Instantiate(_wrapArea);
         _asteroidSpawner = Instantiate(_asteroidSpawner);
 
+        ScoreManager.Instance.ResetScore();
+
         /*
         // Not reusing fields, just a bit bigger space complexity but not removing references from inspector during runtime
         _playerHolder = Instantiate(_player);

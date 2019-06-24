@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
+    [SerializeField] private GameObject GameFinishedPopup;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text highScoreText;
+
 
     private void Awake()
     {
@@ -28,5 +31,20 @@ public class UIManager : MonoBehaviour
         {
             scoreText.text = $"Score: {ScoreManager.Instance.TotalScore.ToString()}";
         }
+    }
+
+    public void UpdateHighScore()
+    {
+        if (highScoreText != null)
+        {
+            highScoreText.text = $"Highscore: {ScoreManager.Instance.HighScore.ToString()}";
+        }
+    }
+
+    public void OnGameFinished()
+    {
+
+        ScoreManager.Instance.CheckHighScore();
+        UpdateHighScore();
     }
 }
