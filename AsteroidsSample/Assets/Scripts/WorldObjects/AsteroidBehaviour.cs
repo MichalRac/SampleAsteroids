@@ -19,12 +19,12 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
         _rb.angularVelocity = Random.rotation.eulerAngles.normalized;
     }
 
-    public void Destroy()
+    public void DestroyGameObject()
     {
         if(SpawnedObjectOnDestroy != null)
         {
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation);
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation);
+            Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
+            Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
         }
         Destroy(gameObject);
     }
@@ -34,7 +34,7 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
         IDestroyable destroyableObject = other.GetComponent<IDestroyable>();
         if (destroyableObject != null)
         {
-            destroyableObject.Destroy();
+            destroyableObject.DestroyGameObject();
         }
     }
 

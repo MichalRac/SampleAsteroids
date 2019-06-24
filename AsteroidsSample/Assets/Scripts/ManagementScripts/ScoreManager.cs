@@ -10,6 +10,14 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        /*
+        HighScore save = Saving.LoadHighScore();
+        if(save != null)
+        {
+            HighScore = save.highScore;
+        }
+        */
+
         if (Instance == null)
         {
             Instance = this;
@@ -19,11 +27,6 @@ public class ScoreManager : MonoBehaviour
             Debug.LogError("Destroying illegal instance of ScoreManager singleton");
             Destroy(this);
         }
-    }
-
-    private void Start()
-    {
-        UIManager.Instance.UpdateScore();
     }
 
     public void AddScore(int value)

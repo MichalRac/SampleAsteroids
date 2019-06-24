@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-    [SerializeField] private GameObject GameFinishedPopup;
+    [SerializeField] private GameObject MainMenuPopup;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreText;
 

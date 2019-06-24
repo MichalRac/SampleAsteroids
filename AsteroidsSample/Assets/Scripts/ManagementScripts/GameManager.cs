@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         _asteroidSpawner = Instantiate(_asteroidSpawner);
 
         ScoreManager.Instance.ResetScore();
+        UIManager.Instance.UpdateScore();
 
         /*
         // Not reusing fields, just a bit bigger space complexity but not removing references from inspector during runtime
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Finished");
         SetActiveMainObjects(false);
+        //Saving.SaveHighScore(ScoreManager.Instance.HighScore);
     }
 
 }

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, IDestroyable
         movement.InputMovement();
     }
 
-    public void Destroy()
+    public void DestroyGameObject()
     {
         gameObject.SetActive(false);
         GameManager.Instance.OnLostLife();

@@ -23,12 +23,12 @@ public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
         IDestroyable destroyableObject = other.GetComponent<IDestroyable>();
         if (destroyableObject != null)
         {
-            destroyableObject.Destroy();
-            Destroy();
+            destroyableObject.DestroyGameObject();
+            DestroyGameObject();
         }
     }
 
-    public void Destroy()
+    public void DestroyGameObject()
     {
         Destroy(gameObject);
     }
