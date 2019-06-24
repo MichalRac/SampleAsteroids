@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable
+public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
+    [SerializeField] private int scoreValue = 1;
+    public int ScoreValue { get => scoreValue; set => scoreValue = value; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
+
 
     protected override void Start()
     {
@@ -33,5 +36,10 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable
         {
             destroyableObject.Destroy();
         }
+    }
+
+    public void Score(int value)
+    {
+        ScoreManager.Instance.AddScore(value);
     }
 }

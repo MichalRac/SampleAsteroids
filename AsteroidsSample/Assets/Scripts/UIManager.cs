@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
+    [SerializeField] private Text scoreText;
 
     private void Awake()
     {
-        if(Instance != null)
+        Debug.Assert(scoreText, "Reference to UI element displaying score was not set");
+        if(Instance == null)
         {
             Instance = this;
         }
@@ -19,5 +22,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public static 
+    public void UpdateScore()
+    {
+        if(scoreText != null)
+        {
+            scoreText.text = $"Score: {ScoreManager.Instance.TotalScore.ToString()}";
+        }
+    }
 }

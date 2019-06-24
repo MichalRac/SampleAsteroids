@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance { get; private set; };
-    private static int totalScore;
-    private static int highScore;
+    public static ScoreManager Instance { get; private set; }
+    public int TotalScore { get; private set; }
+    public int HighScore { get; private set; }
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -21,16 +21,23 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public static void AddScore(int value)
+    private void Start()
     {
-        totalScore += value;
+        TotalScore = 0;
+        UIManager.Instance.UpdateScore();
     }
 
-    public static void CheckHighScore()
+    public void AddScore(int value)
     {
-        if (totalScore > highScore)
+        TotalScore += value;
+        UIManager.Instance.UpdateScore();
+    }
+
+    public void CheckHighScore()
+    {
+        if (TotalScore > HighScore)
         {
-            highScore = totalScore;
+            HighScore = TotalScore;
         }
     }
 }

@@ -14,13 +14,18 @@ public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
 
     protected override void OnTriggerEnter(Collider other)
     {
+        IScorable scoreableObject = other.GetComponent<IScorable>();
+        if (scoreableObject != null)
+        {
+            scoreableObject.Score(scoreableObject.ScoreValue);
+        }
+
         IDestroyable destroyableObject = other.GetComponent<IDestroyable>();
         if (destroyableObject != null)
         {
             destroyableObject.Destroy();
             Destroy();
         }
-
     }
 
     public void Destroy()
