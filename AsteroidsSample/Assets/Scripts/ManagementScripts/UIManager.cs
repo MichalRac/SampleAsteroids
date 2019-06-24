@@ -43,8 +43,8 @@ public class UIManager : MonoBehaviour
 
     public void OnGameFinished()
     {
-
         ScoreManager.Instance.CheckHighScore();
+        MainMenuPopup.SetActive(true);
         UpdateHighScore();
     }
 }

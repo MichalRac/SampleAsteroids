@@ -706,7 +706,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: '
+  m_Text: 
 --- !u!222 &992541676
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3f2e8f13546684394311afbb0a9045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameFinishedPopup: {fileID: 0}
+  MainMenuPopup: {fileID: 925960626}
   scoreText: {fileID: 992541675}
   highScoreText: {fileID: 865973839}
 --- !u!1 &1990088431

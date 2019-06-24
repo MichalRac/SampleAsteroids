@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Finished");
         SetActiveMainObjects(false);
+        UIManager.Instance.OnGameFinished();
         //Saving.SaveHighScore(ScoreManager.Instance.HighScore);
     }
 
