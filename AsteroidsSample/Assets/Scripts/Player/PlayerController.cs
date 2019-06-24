@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour, IDestroyable
         Debug.Assert(movement, $"Ref to {typeof(PlayerMovment)} script was not found");
     }
 
+    private void OnEnable()
+    {
+        transform.position = Vector3.zero;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -21,6 +26,7 @@ public class PlayerController : MonoBehaviour, IDestroyable
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        GameManager.Instance.OnLostLife();
     }
 }

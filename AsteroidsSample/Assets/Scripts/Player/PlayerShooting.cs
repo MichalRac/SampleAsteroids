@@ -13,6 +13,7 @@ public class PlayerShooting : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Debug.Assert(rb, "Rigidbody reference issue");
     }
 
     private void Update()

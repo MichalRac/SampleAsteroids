@@ -26,7 +26,6 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable
         Destroy(gameObject);
     }
 
-
     protected override void OnTriggerEnter(Collider other)
     {
         IDestroyable destroyableObject = other.GetComponent<IDestroyable>();
