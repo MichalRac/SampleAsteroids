@@ -26,8 +26,26 @@ public class ScoreManager : MonoBehaviour
         else
         {
             Debug.LogError("Destroying illegal instance of ScoreManager singleton");
-            Destroy(this);
+            Destroy(gameObject);
         }
+    }
+    #endregion
+
+    #region Main ScoreManager timestamp methods
+    public void OnGameInitialStart()
+    {
+        TotalScore = 0;
+        // Load the HighScore here
+    }
+
+    public void OnPlayerDestroyed()
+    {
+
+    }
+
+    public void OnGameFinished()
+    {
+        CheckHighScore();
     }
     #endregion
 

@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Debug.LogError($"Illegal GameManager instance");
+            Destroy(gameObject);
         }
 
         Debug.Assert(_player.GetComponent<PlayerController>(), "Non player object referenced");
@@ -67,20 +68,21 @@ public class GameManager : MonoBehaviour
         }
         else if (_triesLeft == 0)
         {
-            StopGame();
+            OnGameFinished();
         }
         else
         {
             Debug.LogError("Incorrect TriesLeft Value");
-            StopGame();
+            OnGameFinished();
         }
     }
 
     // Called when number of tries drops to 0
-    public void StopGame()
+    public void OnGameFinished()
     {
         Debug.Log("Game Finished");
         SetActiveMainObjects(false);
+        ScoreManager.Instance.OnGameFinished();
         UIManager.Instance.OnGameFinished();
         //Saving.SaveHighScore(ScoreManager.Instance.HighScore);
     }

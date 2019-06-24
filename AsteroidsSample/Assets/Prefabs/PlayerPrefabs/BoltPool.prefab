@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7500470778267287763
+--- !u!1 &1318619630819363797
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7500470778267287757}
-  - component: {fileID: 7500470778267287756}
+  - component: {fileID: 1318619630819363799}
+  - component: {fileID: 1318619630819363796}
   m_Layer: 0
-  m_Name: AsteroidSpawner
+  m_Name: BoltPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7500470778267287757
+--- !u!4 &1318619630819363799
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7500470778267287763}
+  m_GameObject: {fileID: 1318619630819363797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.02681, y: -29.035645, z: 144.30081}
+  m_LocalPosition: {x: 595.08203, y: 106.125, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7500470778267287756
+--- !u!114 &1318619630819363796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7500470778267287763}
+  m_GameObject: {fileID: 1318619630819363797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86794c216aaf02542a7023b1f473f34d, type: 3}
+  m_Script: {fileID: 11500000, guid: cbce25809fd8f994aa5694c0200c878d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroidTypes:
-  - {fileID: 449537740564881229, guid: 72e3c3026f3d77f4eb7eb27fbac8bdcd, type: 3}
-  - {fileID: 2354627844688426484, guid: 3b43c507726203343a8375823fae6b2f, type: 3}
-  - {fileID: 4676102090561644719, guid: 157c70c7ad903bc4b8f26f42b4a6a06e, type: 3}
-  _timeToFirstSpawn: 30
-  timeBetweenSpawns: 2
+  pooledObject: {fileID: 6328861708139078096, guid: 18441c6f8d386304ea262fccffc2a3c8,
+    type: 3}

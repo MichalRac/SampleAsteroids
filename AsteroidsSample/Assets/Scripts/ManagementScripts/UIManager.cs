@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
         else
         {
             Debug.LogError("Destroying illegal instance of UIManager singleton");
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
     #endregion
@@ -46,9 +46,8 @@ public class UIManager : MonoBehaviour
 
     public void OnGameFinished()
     {
-        ScoreManager.Instance.CheckHighScore();
-        MainMenuPopup.SetActive(true);
         UpdateHighScore();
+        MainMenuPopup.SetActive(true);
     }
     #endregion
 }

@@ -9,7 +9,6 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
     public int ScoreValue { get => scoreValue; set => scoreValue = value; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
 
-
     protected override void Start()
     {
         // Moving towards a random point on screen with random rotation
