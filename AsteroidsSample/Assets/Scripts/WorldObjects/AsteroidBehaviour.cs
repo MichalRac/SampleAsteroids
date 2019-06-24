@@ -6,7 +6,7 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
     [SerializeField] private int scoreValue = 1;
-    public int ScoreValue { get => scoreValue; set => scoreValue = value; }
+    public int ScoreValue { get; set; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
 
     protected override void Start()

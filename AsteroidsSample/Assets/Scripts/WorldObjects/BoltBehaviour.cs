@@ -29,11 +29,6 @@ public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
         }
     }
 
-    public void ResetVelocityDirection()
-    {
-        _rb.velocity = _rb.velocity.magnitude * transform.forward;
-    }
-
     public void DestroyGameObject()
     {
         Pool.ReturnToPool(gameObject);

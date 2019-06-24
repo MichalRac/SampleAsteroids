@@ -21,6 +21,11 @@ public class ForwardingObjectsBehaviour : MonoBehaviour, IPoolable
         _rb.velocity = transform.forward * basePlayerMovementSpeed;
     }
 
+    public void ResetVelocityDirection()
+    {
+        _rb.velocity = _rb.velocity.magnitude * transform.forward;
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         
