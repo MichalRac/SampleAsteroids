@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region Setting up the GameManager Singleton
+
     public static GameManager Instance { get; private set; }
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _wrapArea;
@@ -18,10 +20,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Assert(_player.GetComponent<PlayerController>(), "Non player object referenced");
-        Debug.Assert(_wrapArea.GetComponent<LevelBounds>(), "Non LevelBounds object referenced");
-        Debug.Assert(_asteroidSpawner.GetComponent<AsteroidSpawner>(), "Non Spawner object referenced");
-
         if (Instance == null)
         {
             Instance = this;
@@ -30,8 +28,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-    }
 
+        Debug.Assert(_player.GetComponent<PlayerController>(), "Non player object referenced");
+        Debug.Assert(_wrapArea.GetComponent<LevelBounds>(), "Non LevelBounds object referenced");
+        Debug.Assert(_asteroidSpawner.GetComponent<AsteroidSpawner>(), "Non Spawner object referenced");
+    }
+    #endregion
+
+    #region Main Gameloop Steps
+
+    // Initial Start Game Method, call it on Play Button Clicked
     public void BeginGame()
     {
          // Reusing the fields but removing the from inspector during runtime
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
         */
     }
 
+    // Call each time your ship is destroyed
     public void OnLostLife()
     {
         _triesLeft--;
@@ -69,6 +76,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Called when number of tries drops to 0
+    public void StopGame()
+    {
+        Debug.Log("Game Finished");
+        SetActiveMainObjects(false);
+        UIManager.Instance.OnGameFinished();
+        //Saving.SaveHighScore(ScoreManager.Instance.HighScore);
+    }
+    #endregion
+
+    #region Helper methods
     public IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(2.0f);
@@ -81,14 +99,5 @@ public class GameManager : MonoBehaviour
         _wrapArea.SetActive(setBool);
         _asteroidSpawner.SetActive(setBool);
     }
-
-
-    public void StopGame()
-    {
-        Debug.Log("Game Finished");
-        SetActiveMainObjects(false);
-        UIManager.Instance.OnGameFinished();
-        //Saving.SaveHighScore(ScoreManager.Instance.HighScore);
-    }
-
+    #endregion
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    #region Setting up the UIManager Singleton
     public static UIManager Instance { get; private set; }
     [SerializeField] private GameObject MainMenuPopup;
     [SerializeField] private Text scoreText;
@@ -24,7 +25,9 @@ public class UIManager : MonoBehaviour
             Destroy(this);
         }
     }
+    #endregion
 
+    #region Main Control Methods
     public void UpdateScore()
     {
         if(scoreText != null)
@@ -47,4 +50,5 @@ public class UIManager : MonoBehaviour
         MainMenuPopup.SetActive(true);
         UpdateHighScore();
     }
+    #endregion
 }

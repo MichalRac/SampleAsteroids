@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    #region Setting up the ScoreManager Singleton
     public static ScoreManager Instance { get; private set; }
     public int TotalScore { get; private set; }
     public int HighScore { get; private set; }
@@ -28,7 +29,9 @@ public class ScoreManager : MonoBehaviour
             Destroy(this);
         }
     }
+    #endregion
 
+    #region Main ScoreManager methods
     public void AddScore(int value)
     {
         TotalScore += value;
@@ -47,4 +50,5 @@ public class ScoreManager : MonoBehaviour
     {
         TotalScore = 0;
     }
+    #endregion
 }
