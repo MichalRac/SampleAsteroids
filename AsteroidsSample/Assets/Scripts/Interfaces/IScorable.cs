@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDestroyable
+public interface IScorable
 {
-    void DestroyGameObject();
+    int ScoreValue { get; set; }
+    void Score(int value);
 }

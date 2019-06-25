@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDestroyable
+public interface IPoolableObstacle : IPoolable
 {
-    void DestroyGameObject();
+    int ObstacleID { get; set; }
 }

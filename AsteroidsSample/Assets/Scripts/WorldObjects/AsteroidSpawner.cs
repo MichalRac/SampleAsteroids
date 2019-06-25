@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
+    public static AsteroidSpawner Instance;
 
     [SerializeField] private GameObject[] _asteroidTypes;
     [SerializeField] private float _timeToFirstSpawn;
@@ -11,13 +12,25 @@ public class AsteroidSpawner : MonoBehaviour
     public float timeBetweenSpawns;
     private Vector3 randomSpawnPoint;
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("Destroying illegal instance of AsteroidSpawner singleton");
+            Destroy(this);
+        }
+    }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         StartCoroutine(asteroidSpawner());
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         StopCoroutine(asteroidSpawner());
     }
@@ -45,9 +58,14 @@ public class AsteroidSpawner : MonoBehaviour
                     break;
             }
             randomSpawnPoint = randomSpawnPoint * ASTEROID_SPAWN_OFFSET; // Hardcoded offset
-            Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero));
+            //Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
+            Debug.Log($"Asteroid should be spawned now at {randomSpawnPoint} parent: {transform.name}");
+            GameObject newAsteroid = ObjectPoolManager.Instance.AsteroidPool.GetPooledObject();
+            newAsteroid.transform.position = randomSpawnPoint;
+            
+
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
-
+    
 }

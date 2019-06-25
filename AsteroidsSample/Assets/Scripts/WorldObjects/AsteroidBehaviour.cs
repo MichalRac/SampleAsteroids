@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable
+public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable, IPoolableObstacle
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
+    [SerializeField] private int scoreValue = 1;
+    [HideInInspector] public int ObstacleID { get; set; }
+    public int ScoreValue { get; set; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
+
 
     protected override void Start()
     {
@@ -16,23 +20,34 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable
         _rb.angularVelocity = Random.rotation.eulerAngles.normalized;
     }
 
-    public void Destroy()
+    public void DestroyGameObject()
     {
         if(SpawnedObjectOnDestroy != null)
         {
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation);
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation);
+            GameObject spawnedNextObstacle = ObjectPoolManager.Instance.AsteroidPool.GetNextIndexObject(ObstacleID);
+            spawnedNextObstacle.transform.position = this.transform.position + new Vector3(10.0f, 0.0f, 10.0f);
+
+            spawnedNextObstacle = ObjectPoolManager.Instance.AsteroidPool.GetNextIndexObject(ObstacleID);
+            spawnedNextObstacle.transform.position = this.transform.position - new Vector3(10.0f, 0.0f, 10.0f);
+
+            //Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
+            //Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
         }
+        ObjectPoolManager.Instance.AsteroidPool.ReturnToPool(this.gameObject);
         Destroy(gameObject);
     }
-
 
     protected override void OnTriggerEnter(Collider other)
     {
         IDestroyable destroyableObject = other.GetComponent<IDestroyable>();
         if (destroyableObject != null)
         {
-            destroyableObject.Destroy();
+            destroyableObject.DestroyGameObject();
         }
+    }
+
+    public void Score(int value)
+    {
+        ScoreManager.Instance.AddScore(value);
     }
 }
