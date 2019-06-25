@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPoolable
 {
-    ObjectPool Pool { get; set; }   
+    BasePool Pool { get; set; }   
 }

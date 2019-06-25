@@ -7,7 +7,7 @@ using UnityEngine;
 public class ForwardingObjectsBehaviour : MonoBehaviour, IPoolable
 {
     [SerializeField] public static float basePlayerMovementSpeed;  // The base speed is defined as Player Movement Speed
-    public ObjectPool Pool { get; set; }
+    public BasePool Pool { get; set; }
     protected Rigidbody _rb;
     
 

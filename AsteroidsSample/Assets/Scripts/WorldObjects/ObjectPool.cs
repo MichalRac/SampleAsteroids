@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : BasePool
 {
     [SerializeField] private GameObject pooledObject;
     private Queue<GameObject> pool = new Queue<GameObject>();
 
-    public GameObject GetPooledObject()
+    public override GameObject GetPooledObject()
     {
         if(pool.Count == 0)
         {
@@ -18,7 +18,7 @@ public class ObjectPool : MonoBehaviour
         return instance;
     }
 
-    public void ExpandPool(int expandByValue)
+    protected override void ExpandPool(int expandByValue)
     {
         for(int i = 0; i < expandByValue; i++)
         {
@@ -29,7 +29,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public void ReturnToPool(GameObject instance)
+    protected override void ReturnToPool(GameObject instance)
     {
         instance.SetActive(false);
         pool.Enqueue(instance);
