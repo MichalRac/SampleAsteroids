@@ -15,7 +15,7 @@ public class BasePool : MonoBehaviour
     }
 
 
-    protected virtual void ReturnToPool(GameObject instance)
+    public virtual void ReturnToPool(GameObject instance)
     {
         
     }

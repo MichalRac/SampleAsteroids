@@ -2,12 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable
+public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable, IPoolableObstacle
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
     [SerializeField] private int scoreValue = 1;
     public int ScoreValue { get; set; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
+
+    [HideInInspector]
+    public int? ObstacleID
+    {
+        get { return ObstacleID; }
+        set
+        {
+            if (ObstacleID != null)
+            {
+                Debug.LogError("Cannot set ObstacleID twice");
+            }
+            else
+            {
+                ObstacleID = value;
+            }
+        }
+    }
 
     protected override void Start()
     {

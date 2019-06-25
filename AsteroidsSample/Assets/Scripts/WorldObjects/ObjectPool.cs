@@ -24,12 +24,16 @@ public class ObjectPool : BasePool
         {
             var instanceToAdd = Instantiate(pooledObject);
             instanceToAdd.transform.SetParent(transform);
-            instanceToAdd.GetComponent<IPoolable>().Pool = this;
+
+            IPoolable instanceInterface = instanceToAdd.GetComponent<IPoolable>();
+            Debug.Assert(instanceInterface != null, $"The assigned obstacle GameObject {instanceToAdd.name} does not have IPoolable interface");
+            instanceInterface.Pool = this;
+
             ReturnToPool(instanceToAdd);
         }
     }
 
-    protected override void ReturnToPool(GameObject instance)
+    public override void ReturnToPool(GameObject instance)
     {
         instance.SetActive(false);
         pool.Enqueue(instance);
