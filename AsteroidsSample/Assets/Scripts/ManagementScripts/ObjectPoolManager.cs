@@ -9,8 +9,8 @@ public class ObjectPoolManager : MonoBehaviour
     
     [SerializeField] private BasePool boltPool;
     [SerializeField] private AsteroidPool asteroidPool;
-    public BasePool BoltPool { get => boltPool; }
-    public AsteroidPool AsteroidPool { get => asteroidPool; }
+    public BasePool BoltPool { get => boltPool; private set => boltPool = value; }
+    public AsteroidPool AsteroidPool { get => asteroidPool; private set => asteroidPool = value; }
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class ObjectPoolManager : MonoBehaviour
             Debug.LogError("Destroying illegal instance of ObjectPoolManager singleton");
             Destroy(gameObject);
         }
-        Instantiate(asteroidPool);
+        AsteroidPool = Instantiate(asteroidPool);
     }
 
     // Start is called before the first frame update

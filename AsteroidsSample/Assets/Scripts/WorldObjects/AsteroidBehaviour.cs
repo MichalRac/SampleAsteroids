@@ -24,9 +24,16 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
     {
         if(SpawnedObjectOnDestroy != null)
         {
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
+            GameObject spawnedNextObstacle = ObjectPoolManager.Instance.AsteroidPool.GetNextIndexObject(ObstacleID);
+            spawnedNextObstacle.transform.position = this.transform.position + new Vector3(10.0f, 0.0f, 10.0f);
+
+            spawnedNextObstacle = ObjectPoolManager.Instance.AsteroidPool.GetNextIndexObject(ObstacleID);
+            spawnedNextObstacle.transform.position = this.transform.position - new Vector3(10.0f, 0.0f, 10.0f);
+
+            //Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
+            //Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
         }
+        ObjectPoolManager.Instance.AsteroidPool.ReturnToPool(this.gameObject);
         Destroy(gameObject);
     }
 

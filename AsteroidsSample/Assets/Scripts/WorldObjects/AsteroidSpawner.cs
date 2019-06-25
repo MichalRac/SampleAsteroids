@@ -25,12 +25,12 @@ public class AsteroidSpawner : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         StartCoroutine(asteroidSpawner());
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         StopCoroutine(asteroidSpawner());
     }
@@ -59,7 +59,11 @@ public class AsteroidSpawner : MonoBehaviour
             }
             randomSpawnPoint = randomSpawnPoint * ASTEROID_SPAWN_OFFSET; // Hardcoded offset
             //Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
-            GameObject newAsteroid = Instantiate(ObjectPoolManager.Instance.AsteroidPool.GetPooledObject(), randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
+            Debug.Log($"Asteroid should be spawned now at {randomSpawnPoint} parent: {transform.name}");
+            GameObject newAsteroid = ObjectPoolManager.Instance.AsteroidPool.GetPooledObject();
+            newAsteroid.transform.position = randomSpawnPoint;
+            
+
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }

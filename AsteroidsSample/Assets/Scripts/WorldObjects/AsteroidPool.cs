@@ -17,20 +17,29 @@ public class AsteroidPool : BasePool
         {
             obstaclePools.Add(i, new Queue<GameObject>());
         }
-        ExpandPool(10);
+        ExpandPool(10); // Adding 10 of each obstacle to the pool
     }
 
     public override GameObject GetPooledObject()
     {
-        int randIndex = Random.Range(0, obstaclePools.Count);
-
-        if (obstaclePools[randIndex].Count == 0)
+        int randIndex = Random.Range(0, obstacles.Length);
+        GameObject instance = null;
+        try
         {
-            ExpandPool(10);
-        }
+            if (obstaclePools[randIndex].Count == 0)
+            {
+                ExpandObstacleIndexInPool(randIndex, 5);
+            }
 
-        var instance = obstaclePools[randIndex].Dequeue();
-        instance.SetActive(true);
+            instance = obstaclePools[randIndex].Dequeue();
+            instance.SetActive(true);
+        }
+        catch(KeyNotFoundException)
+        {
+            Debug.Log("PooledObject not found");
+            return null;
+        }
+        
         return instance;
     }
 
@@ -38,6 +47,11 @@ public class AsteroidPool : BasePool
     {
         if (currentObstacleID < obstaclePools.Count)
         {
+            if (obstaclePools[currentObstacleID + 1].Count == 0)
+            {
+                ExpandObstacleIndexInPool(currentObstacleID + 1, 5);
+            }
+
             var instance = obstaclePools[currentObstacleID + 1].Dequeue();
             instance.SetActive(true);
             return instance;
@@ -71,7 +85,7 @@ public class AsteroidPool : BasePool
     }
 
     //Expanding a particular obstacle pool
-    protected void ExpandObstaclePool(int expandedObstacleIndex, int expandByValue)
+    protected void ExpandObstacleIndexInPool(int expandedObstacleIndex, int expandByValue)
     {
         for (int i = 0; i < expandByValue; i++)
         {
