@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable
+public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable, IPoolableObstacle
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
     [SerializeField] private int scoreValue = 1;
-    public int ScoreValue { get => scoreValue; set => scoreValue = value; }
+    [HideInInspector] public int ObstacleID { get; set; }
+    public int ScoreValue { get; set; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
 
 
@@ -23,9 +24,16 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
     {
         if(SpawnedObjectOnDestroy != null)
         {
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
-            Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
+            GameObject spawnedNextObstacle = ObjectPoolManager.Instance.AsteroidPool.GetNextIndexObject(ObstacleID);
+            spawnedNextObstacle.transform.position = this.transform.position + new Vector3(10.0f, 0.0f, 10.0f);
+
+            spawnedNextObstacle = ObjectPoolManager.Instance.AsteroidPool.GetNextIndexObject(ObstacleID);
+            spawnedNextObstacle.transform.position = this.transform.position - new Vector3(10.0f, 0.0f, 10.0f);
+
+            //Instantiate(SpawnedObjectOnDestroy, this.transform.position + new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
+            //Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
         }
+        ObjectPoolManager.Instance.AsteroidPool.ReturnToPool(this.gameObject);
         Destroy(gameObject);
     }
 

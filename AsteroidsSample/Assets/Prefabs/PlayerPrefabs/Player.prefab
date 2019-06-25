@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bolt: {fileID: 2135891472393574677, guid: 18441c6f8d386304ea262fccffc2a3c8, type: 3}
   _boltSpawnPoint: {fileID: 1761079514694655865}
+  _boltPool: {fileID: 1318619630819363796, guid: 18b82b36c0594a946a330663ceeacb46,
+    type: 3}
 --- !u!1 &7139117847576964439
 GameObject:
   m_ObjectHideFlags: 0
