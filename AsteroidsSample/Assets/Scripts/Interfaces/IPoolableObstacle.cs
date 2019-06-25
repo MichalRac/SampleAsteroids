@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPoolableObstacle : IPoolable
 {
-    int? ObstacleID { get; set; }
+    int ObstacleID { get; set; }
 }

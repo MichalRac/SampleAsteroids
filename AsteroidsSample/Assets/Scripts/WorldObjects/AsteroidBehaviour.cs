@@ -6,25 +6,10 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
     [SerializeField] private int scoreValue = 1;
+    [HideInInspector] public int ObstacleID { get; set; }
     public int ScoreValue { get; set; }
     private const float SPEED_MULTIPLIER_ASTEROID = 0.6f;
 
-    [HideInInspector]
-    public int? ObstacleID
-    {
-        get { return ObstacleID; }
-        set
-        {
-            if (ObstacleID != null)
-            {
-                Debug.LogError("Cannot set ObstacleID twice");
-            }
-            else
-            {
-                ObstacleID = value;
-            }
-        }
-    }
 
     protected override void Start()
     {

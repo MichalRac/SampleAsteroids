@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class AsteroidPool : BasePool
 {
+    //Main Obstacles, the place on the array is the obstacleIndexID
     [SerializeField] private GameObject[] obstacles;
-
-    private Dictionary<int, Queue<GameObject>> obstaclePools
-        = new Dictionary<int, Queue<GameObject>>();
+    
+    //Dictionary of different types of obstacles
+    //The Key is connected to obsctacleIndexID, the value is a pool queue of objects created from obstacles[obstacleIndexID]
+    private Dictionary<int, Queue<GameObject>> obstaclePools = new Dictionary<int, Queue<GameObject>>();
 
     private void Awake()
     {
-        for (int i = 0; i < obstacles.Length; i++)
+        for(int i = 0; i < obstacles.Length; i++)
         {
             obstaclePools.Add(i, new Queue<GameObject>());
         }
+        ExpandPool(10);
     }
 
     public override GameObject GetPooledObject()
@@ -31,10 +34,18 @@ public class AsteroidPool : BasePool
         return instance;
     }
 
-    public GameObject GetNextIndexObject(int current)
+    public GameObject GetNextIndexObject(int currentObstacleID)
     {
-        GameObject instance = new GameObject();
-        return instance;
+        if (currentObstacleID < obstaclePools.Count)
+        {
+            var instance = obstaclePools[currentObstacleID + 1].Dequeue();
+            instance.SetActive(true);
+            return instance;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     // In this case we expand entire pool of all obstacles
@@ -52,12 +63,14 @@ public class AsteroidPool : BasePool
                 Debug.Assert(instanceInterface != null, $"The assigned obstacle GameObject {obstacles[obstacleIndex].name} does not have IPoolableObstacle interface");
                 instanceInterface.Pool = this;
                 instanceInterface.ObstacleID = obstacleIndex;
+                Debug.Log(obstacleIndex);
 
                 ReturnToPool(instanceToAdd);
             }
         }
     }
 
+    //Expanding a particular obstacle pool
     protected void ExpandObstaclePool(int expandedObstacleIndex, int expandByValue)
     {
         for (int i = 0; i < expandByValue; i++)
@@ -77,6 +90,7 @@ public class AsteroidPool : BasePool
     public override void ReturnToPool(GameObject instance)
     {
         instance.SetActive(false);
-        obstaclePools[0].Enqueue(instance);
+        Debug.Log(instance.GetComponent<IPoolableObstacle>().ObstacleID);
+        obstaclePools[instance.GetComponent<IPoolableObstacle>().ObstacleID].Enqueue(instance);
     }
 }

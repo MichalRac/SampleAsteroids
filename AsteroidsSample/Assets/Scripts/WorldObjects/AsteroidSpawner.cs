@@ -58,7 +58,8 @@ public class AsteroidSpawner : MonoBehaviour
                     break;
             }
             randomSpawnPoint = randomSpawnPoint * ASTEROID_SPAWN_OFFSET; // Hardcoded offset
-            Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
+            //Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
+            GameObject newAsteroid = Instantiate(ObjectPoolManager.Instance.AsteroidPool.GetPooledObject(), randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
