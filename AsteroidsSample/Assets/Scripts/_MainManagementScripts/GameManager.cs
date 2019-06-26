@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     // Call each time your ship is destroyed
     public void OnLostLife()
     {
+        ObjectPoolManager.DisableAllPooledObjects();
         _triesLeft--;
         if (_triesLeft > 0)
         {

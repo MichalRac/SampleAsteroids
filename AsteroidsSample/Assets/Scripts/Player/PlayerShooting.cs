@@ -23,7 +23,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject newBolt = _boltPool.GetPooledObject();
+            GameObject newBolt = ObjectPoolManager.Instance.BoltPool.GetPooledObject();
             newBolt.transform.position = _boltSpawnPoint.position;
             newBolt.transform.rotation = _boltSpawnPoint.rotation;
 
