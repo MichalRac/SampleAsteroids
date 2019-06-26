@@ -46,9 +46,9 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
         }
     }
 
-    public void Score(int value)
+    public void Score()
     {
-        Debug.Log("Score added");
-        ScoreManager.Instance.AddScore(value);
+        Debug.Log($"value: {ScoreValue}");
+        ScoreManager.Instance.AddScore(scoreValue);
     }
 }

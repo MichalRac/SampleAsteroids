@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IScorable
 {
     int ScoreValue { get; set; }
-    void Score(int value);
+    void Score();
 }
