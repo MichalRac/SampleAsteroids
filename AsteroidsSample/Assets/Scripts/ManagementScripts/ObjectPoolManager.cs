@@ -26,15 +26,18 @@ public class ObjectPoolManager : MonoBehaviour
         AsteroidPool = Instantiate(asteroidPool);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public static void DisableAllPooledObjects()
     {
-        
+        DisableObstaclePoolChilds(Instance.AsteroidPool.transform);
+        //Not yet connected to ObjectPoolManager
+        //DisablePoolChilds(Instance.BoltPool.transform);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void DisableObstaclePoolChilds(Transform pool)
     {
-        
+        for (int i = 0; i < pool.childCount; i++)
+        {
+            Instance.AsteroidPool.ReturnToPool(pool.GetChild(i).gameObject);
+        }
     }
 }
