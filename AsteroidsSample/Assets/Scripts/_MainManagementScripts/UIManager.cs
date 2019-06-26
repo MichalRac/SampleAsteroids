@@ -7,9 +7,9 @@ public class UIManager : MonoBehaviour
 {
     #region Setting up the UIManager Singleton
     public static UIManager Instance { get; private set; }
-    [SerializeField] private GameObject MainMenuPopup;
+    [SerializeField] private BasicPopup MainMenuPopup;
+    [SerializeField] private BasicPopup GameFinishedPopup;
     [SerializeField] private Text scoreText;
-    [SerializeField] private Text highScoreText;
 
 
     private void Awake()
@@ -24,6 +24,14 @@ public class UIManager : MonoBehaviour
             Debug.LogError("Destroying illegal instance of UIManager singleton");
             Destroy(gameObject);
         }
+        MainMenuPopup = Instantiate(MainMenuPopup, transform);
+        GameFinishedPopup = Instantiate(GameFinishedPopup, transform);
+        scoreText = Instantiate(scoreText, transform);
+    }
+
+    private void Start()
+    {
+        MainMenuPopup.DisplayPopup(true);
     }
     #endregion
 
@@ -36,18 +44,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateHighScore()
-    {
-        if (highScoreText != null)
-        {
-            highScoreText.text = $"Highscore: {ScoreManager.Instance.HighScore.ToString()}";
-        }
-    }
-
     public void OnGameFinished()
     {
-        UpdateHighScore();
-        MainMenuPopup.SetActive(true);
+        GameFinishedPopup.DisplayPopup(true);
+    }
+
+    public void showMainMenuPopup()
+    {
+        MainMenuPopup.DisplayPopup(true);
     }
     #endregion
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AsteroidPool : BasePool
 {
     //Main Obstacles, the place on the array is the obstacleIndexID
+    //Via GetNextIndexObject, the first obstacle might spawn second, second might spawn third, last will not spawn anything (should be easy to extend)
     [SerializeField] private GameObject[] obstacles;
     
     //Dictionary of different types of obstacles
@@ -77,7 +78,6 @@ public class AsteroidPool : BasePool
                 Debug.Assert(instanceInterface != null, $"The assigned obstacle GameObject {obstacles[obstacleIndex].name} does not have IPoolableObstacle interface");
                 instanceInterface.Pool = this;
                 instanceInterface.ObstacleID = obstacleIndex;
-                Debug.Log(obstacleIndex);
 
                 ReturnToPool(instanceToAdd);
             }
@@ -104,7 +104,6 @@ public class AsteroidPool : BasePool
     public override void ReturnToPool(GameObject instance)
     {
         instance.SetActive(false);
-        Debug.Log(instance.GetComponent<IPoolableObstacle>().ObstacleID);
         obstaclePools[instance.GetComponent<IPoolableObstacle>().ObstacleID].Enqueue(instance);
     }
 }

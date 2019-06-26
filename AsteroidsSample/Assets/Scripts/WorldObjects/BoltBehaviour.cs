@@ -17,7 +17,7 @@ public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
         IScorable scoreableObject = other.GetComponent<IScorable>();
         if (scoreableObject != null)
         {
-            scoreableObject.Score(scoreableObject.ScoreValue);
+            scoreableObject.Score();
         }
 
         IDestroyable destroyableObject = other.GetComponent<IDestroyable>();
