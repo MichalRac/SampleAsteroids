@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926854b364809c4459e8a68e5b28e725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleOnDestroy: {fileID: 458311474530884295, guid: 80a60b34c52a0174f85276b119b2c22c,
+    type: 3}
 --- !u!114 &1153836318013116810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,8 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bolt: {fileID: 2135891472393574677, guid: 18441c6f8d386304ea262fccffc2a3c8, type: 3}
   _boltSpawnPoint: {fileID: 1761079514694655865}
-  _boltPool: {fileID: 1318619630819363796, guid: 18b82b36c0594a946a330663ceeacb46,
-    type: 3}
 --- !u!1 &7139117847576964439
 GameObject:
   m_ObjectHideFlags: 0

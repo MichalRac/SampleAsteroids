@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovment))]
 public class PlayerController : MonoBehaviour, IDestroyable
 {
+    [SerializeField] private Particle particleOnDestroy;
     private PlayerMovment movement;
 
     private void Awake()
@@ -28,5 +29,6 @@ public class PlayerController : MonoBehaviour, IDestroyable
     {
         gameObject.SetActive(false);
         GameManager.Instance.OnLostLife();
+        Instantiate(particleOnDestroy, transform.position, transform.rotation);
     }
 }

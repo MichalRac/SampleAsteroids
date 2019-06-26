@@ -5,6 +5,7 @@ using UnityEngine;
 public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScorable, IPoolableObstacle
 {
     [SerializeField] private GameObject SpawnedObjectOnDestroy;
+    [SerializeField] private Particle particleOnDestroy;
     [SerializeField] private int scoreValue = 1;
     [HideInInspector] public int ObstacleID { get; set; }
     public int ScoreValue { get; set; }
@@ -34,6 +35,7 @@ public class AsteroidBehaviour : ForwardingObjectsBehaviour, IDestroyable, IScor
             //Instantiate(SpawnedObjectOnDestroy, this.transform.position - new Vector3(5.0f, 0.0f, 5.0f), this.transform.rotation, AsteroidSpawner.Instance.transform);
         }
         ObjectPoolManager.Instance.AsteroidPool.ReturnToPool(this.gameObject);
+        Instantiate(particleOnDestroy, transform.position, transform.rotation);
         //Destroy(gameObject);
     }
 
