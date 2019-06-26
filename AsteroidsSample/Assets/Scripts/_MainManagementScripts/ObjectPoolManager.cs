@@ -31,6 +31,8 @@ public class ObjectPoolManager : MonoBehaviour
 
     public static void DisableAllPooledObjects()
     {
+        // A little dirty way to go about it, would be a pain if there were many different pools, maybe there is a way to go about it in more generic way?
+        // TODO: Look into adding DisableChildPoolObjects from the level of separate pools, >>> or even adding it to main BasicPool and just calling that method in each used pool <<<
         DisableObstaclePoolChilds(Instance.AsteroidPool.transform);
 
         Transform pool = Instance.BoltPool.transform;
