@@ -77,7 +77,6 @@ public class AsteroidPool : BasePool
                 Debug.Assert(instanceInterface != null, $"The assigned obstacle GameObject {obstacles[obstacleIndex].name} does not have IPoolableObstacle interface");
                 instanceInterface.Pool = this;
                 instanceInterface.ObstacleID = obstacleIndex;
-                Debug.Log(obstacleIndex);
 
                 ReturnToPool(instanceToAdd);
             }
@@ -104,7 +103,6 @@ public class AsteroidPool : BasePool
     public override void ReturnToPool(GameObject instance)
     {
         instance.SetActive(false);
-        Debug.Log(instance.GetComponent<IPoolableObstacle>().ObstacleID);
         obstaclePools[instance.GetComponent<IPoolableObstacle>().ObstacleID].Enqueue(instance);
     }
 }

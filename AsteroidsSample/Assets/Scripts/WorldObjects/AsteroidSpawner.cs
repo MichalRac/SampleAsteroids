@@ -59,7 +59,6 @@ public class AsteroidSpawner : MonoBehaviour
             }
             randomSpawnPoint = randomSpawnPoint * ASTEROID_SPAWN_OFFSET; // Hardcoded offset
             //Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
-            Debug.Log($"Asteroid should be spawned now at {randomSpawnPoint} parent: {transform.name}");
             GameObject newAsteroid = ObjectPoolManager.Instance.AsteroidPool.GetPooledObject();
             newAsteroid.transform.position = randomSpawnPoint;
             
