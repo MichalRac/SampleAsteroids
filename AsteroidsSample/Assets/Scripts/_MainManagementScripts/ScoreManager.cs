@@ -6,8 +6,8 @@ public class ScoreManager : MonoBehaviour
 {
     #region Setting up the ScoreManager Singleton
     public static ScoreManager Instance { get; private set; }
-    public int TotalScore { get; private set; }
     public int HighScore { get; private set; }
+    public int TotalScore { get; private set; }
 
     private void Awake()
     {
@@ -27,15 +27,24 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.LogError("Destroying illegal instance of ScoreManager singleton");
             Destroy(gameObject);
+            UIManager.Instance.UpdateScore();
+
         }
+        
     }
     #endregion
+
+    private void Start()
+    {
+        OnGameInitialStart();
+    }
 
     #region Main ScoreManager timestamp methods
     public void OnGameInitialStart()
     {
         TotalScore = 0;
-        // Load the HighScore here
+        HighScore = 0;
+        //Load the HighScore here
     }
 
     public void OnPlayerDestroyed()
@@ -68,6 +77,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         TotalScore = 0;
+        UIManager.Instance.UpdateScore();
     }
     #endregion
 }

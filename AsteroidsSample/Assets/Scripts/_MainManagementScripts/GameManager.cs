@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _wrapArea;
     [SerializeField] private GameObject _asteroidSpawner;
+    [SerializeField] private GameObject _UIManagerPrefab;
+    [SerializeField] private int _triesTotal = 3;
     private int _triesLeft = 3;
     /*
     private GameObject _playerHolder;
@@ -33,6 +35,19 @@ public class GameManager : MonoBehaviour
         Debug.Assert(_player.GetComponent<PlayerController>(), "Non player object referenced");
         Debug.Assert(_wrapArea.GetComponent<LevelBounds>(), "Non LevelBounds object referenced");
         Debug.Assert(_asteroidSpawner.GetComponent<AsteroidSpawner>(), "Non Spawner object referenced");
+        Debug.Assert(_UIManagerPrefab, "Non UIManager referenced");
+
+    }
+
+    private void Start()
+    {
+        Instantiate(_UIManagerPrefab);
+
+        // Reusing the fields but removing the from inspector during runtime
+        _player = Instantiate(_player);
+        _wrapArea = Instantiate(_wrapArea);
+        _asteroidSpawner = Instantiate(_asteroidSpawner);
+        SetActiveMainObjects(false);
     }
     #endregion
 
@@ -41,13 +56,9 @@ public class GameManager : MonoBehaviour
     // Initial Start Game Method, call it on Play Button Clicked
     public void BeginGame()
     {
-         // Reusing the fields but removing the from inspector during runtime
-        _player = Instantiate(_player);
-        _wrapArea = Instantiate(_wrapArea);
-        _asteroidSpawner = Instantiate(_asteroidSpawner);
-
         ScoreManager.Instance.ResetScore();
         UIManager.Instance.UpdateScore();
+        SetActiveMainObjects(true);
 
         /*
         // Not reusing fields, just a bit bigger space complexity but not removing references from inspector during runtime
@@ -85,6 +96,7 @@ public class GameManager : MonoBehaviour
         SetActiveMainObjects(false);
         ScoreManager.Instance.OnGameFinished();
         UIManager.Instance.OnGameFinished();
+        _triesLeft = _triesTotal;
         //Saving.SaveHighScore(ScoreManager.Instance.HighScore);
     }
     #endregion
