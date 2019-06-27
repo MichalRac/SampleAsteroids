@@ -12,6 +12,17 @@ public class PlayerMovment : MonoBehaviour
         ForwardingObjectsBehaviour.basePlayerMovementSpeed = _movementSpeed;
     }
 
+    private void Start()
+    {
+        GetSettingsData();
+    }
+
+    public void GetSettingsData()
+    {
+        _movementSpeed = DataSetupManager.Instance.InitData.playerBaseSpeed;
+        _rotationSpeed = DataSetupManager.Instance.InitData.playerRotation;
+    }
+
     public void InputMovement()
     {
         float movementValue = Input.GetAxis("Vertical");

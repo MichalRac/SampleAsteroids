@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _wrapArea;
     [SerializeField] private GameObject _asteroidSpawner;
     [SerializeField] private GameObject _UIManagerPrefab;
-    [SerializeField] private int _triesTotal = 3;
-    private int _triesLeft = 3;
+    private int _triesTotal;
+    private int _triesLeft;
+    public int TriesLeft { get => _triesLeft; private set => _triesLeft = value; }
     /*
     private GameObject _playerHolder;
     private GameObject _wrapAreaHolder;
@@ -41,13 +42,32 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(_UIManagerPrefab);
+        GetSettingsData();;
 
+        Instantiate(_UIManagerPrefab);
         // Reusing the fields but removing the from inspector during runtime
         _player = Instantiate(_player);
         _wrapArea = Instantiate(_wrapArea);
         _asteroidSpawner = Instantiate(_asteroidSpawner);
         SetActiveMainObjects(false);
+
+        
+    }
+
+    public void GetSettingsData()
+    {
+        _triesTotal = DataSetupManager.Instance.InitData.numberOfLives;
+        _triesLeft = _triesTotal;
+
+        if (DataSetupManager.Instance.InitData.collisionBetweenAsteroids == true)
+        {
+            Physics.IgnoreLayerCollision(11, 11, false);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(11, 11, true);
+
+        }
     }
     #endregion
 
@@ -57,7 +77,7 @@ public class GameManager : MonoBehaviour
     public void BeginGame()
     {
         ScoreManager.Instance.ResetScore();
-        UIManager.Instance.UpdateScore();
+        UIManager.Instance.OnGameStarted();
         SetActiveMainObjects(true);
 
         /*
@@ -71,8 +91,9 @@ public class GameManager : MonoBehaviour
     // Call each time your ship is destroyed
     public void OnLostLife()
     {
-        ObjectPoolManager.DisableAllPooledObjects();
         _triesLeft--;
+        ObjectPoolManager.DisableAllPooledObjects();
+        UIManager.Instance.UpdateTries();
         if (_triesLeft > 0)
         {
             SetActiveMainObjects(false);
@@ -105,6 +126,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(2.0f);
+        UIManager.Instance.OnGameStarted();
         SetActiveMainObjects(true);
     }
 

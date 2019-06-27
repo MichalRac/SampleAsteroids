@@ -20,7 +20,8 @@ public class ObjectPool : BasePool
 
     protected override void ExpandPool(int expandByValue)
     {
-        for(int i = 0; i < expandByValue; i++)
+        Debug.Log("Expanding Pool");
+        for (int i = 0; i < expandByValue; i++)
         {
             var instanceToAdd = Instantiate(pooledObject);
             instanceToAdd.transform.SetParent(transform);

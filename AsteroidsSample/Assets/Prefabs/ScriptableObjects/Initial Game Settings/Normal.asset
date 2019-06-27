@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359dfdf8292e622458e585427ebc1370, type: 3}
+  m_Name: Normal
+  m_EditorClassIdentifier: 
+  collisionBetweenAsteroids: 1
+  numberOfLives: 3
+  scorePerAsteroid: 10
+  playerBaseSpeed: 100
+  playerRotation: 300
+  boltSpeedMultiplier: 1.3
+  asteroidSpeedMultiplier: 0.8

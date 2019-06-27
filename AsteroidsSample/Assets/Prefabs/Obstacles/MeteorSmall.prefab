@@ -62,7 +62,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 4
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &2905617788514754595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnedObjectOnDestroy: {fileID: 0}
+  particleOnDestroy: {fileID: 7782491306392392099, guid: 66a08e60232f46241a9676fd5bae4f54,
+    type: 3}
   scoreValue: 1
 --- !u!1001 &1003942958476883251
 PrefabInstance:
