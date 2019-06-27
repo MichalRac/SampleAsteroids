@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359dfdf8292e622458e585427ebc1370, type: 3}
   m_Name: Soulslike
   m_EditorClassIdentifier: 
-  collisionBetweenAsteroids: 0
+  collisionBetweenAsteroids: 1
   numberOfLives: 1
   scorePerAsteroid: 1
   playerBaseSpeed: 60

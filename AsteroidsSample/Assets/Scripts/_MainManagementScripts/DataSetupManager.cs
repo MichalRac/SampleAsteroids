@@ -7,6 +7,7 @@ public class DataSetupManager : MonoBehaviour
 
     public static DataSetupManager Instance { get; private set; }
     public GameInitData InitData;
+    public SpawnerSettings spawnerSettings;
 
     private void Awake()
     {

@@ -7,9 +7,9 @@ public class AsteroidSpawner : MonoBehaviour
     public static AsteroidSpawner Instance;
 
     [SerializeField] private GameObject[] _asteroidTypes;
-    [SerializeField] private float _timeToFirstSpawn;
+    private float _timeToFirstSpawn;
+    private float _timeBetweenSpawns;
     private const float ASTEROID_SPAWN_OFFSET = 1.2f;
-    public float timeBetweenSpawns;
     private Vector3 randomSpawnPoint;
 
     private void Awake()
@@ -23,6 +23,18 @@ public class AsteroidSpawner : MonoBehaviour
             Debug.LogError("Destroying illegal instance of AsteroidSpawner singleton");
             Destroy(this);
         }
+    }
+
+    private void Start()
+    {
+        GetSettingsData();
+    }
+
+    public void GetSettingsData()
+    {
+        _timeToFirstSpawn = DataSetupManager.Instance.spawnerSettings.timeToStartSpawning;
+        _timeBetweenSpawns = DataSetupManager.Instance.spawnerSettings.timeBetweenSpawns;
+
     }
 
     public void OnEnable()
@@ -64,7 +76,7 @@ public class AsteroidSpawner : MonoBehaviour
             newAsteroid.SetActive(true);
             
 
-            yield return new WaitForSeconds(timeBetweenSpawns);
+            yield return new WaitForSeconds(_timeBetweenSpawns);
         }
     }
     
