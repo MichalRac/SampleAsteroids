@@ -215,3 +215,5 @@ MonoBehaviour:
     type: 3}
   scoreText: {fileID: 5896325670185977624, guid: 18242969fca18f142adc91fbcbd82aea,
     type: 3}
+  triesText: {fileID: 6018686075232154562, guid: dad48fc6fd23201469d1ee0d57319b54,
+    type: 3}
