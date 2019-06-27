@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
 {
+    [SerializeField] private Particle particleOnDestroy;
     private const float BASE_SPEED_MULTIPLIER_BOLT = 1.3f; // To ensure that in case of bullets the bullet is faster than the ship
 
     protected override void Start()
@@ -32,6 +33,7 @@ public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
     public void DestroyGameObject()
     {
         Pool.ReturnToPool(gameObject);
+        Instantiate(particleOnDestroy, transform.position, transform.rotation);
     }
 
 }
