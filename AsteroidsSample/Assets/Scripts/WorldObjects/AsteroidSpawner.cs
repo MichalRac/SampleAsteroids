@@ -61,6 +61,7 @@ public class AsteroidSpawner : MonoBehaviour
             //Instantiate(_asteroidTypes[Random.Range(0, _asteroidTypes.Length)], randomSpawnPoint, Quaternion.Euler(Vector3.zero), transform);
             GameObject newAsteroid = ObjectPoolManager.Instance.AsteroidPool.GetPooledObject();
             newAsteroid.transform.position = randomSpawnPoint;
+            newAsteroid.SetActive(true);
             
 
             yield return new WaitForSeconds(timeBetweenSpawns);

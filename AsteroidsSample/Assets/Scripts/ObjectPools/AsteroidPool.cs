@@ -33,7 +33,7 @@ public class AsteroidPool : BasePool
             }
 
             instance = obstaclePools[randIndex].Dequeue();
-            instance.SetActive(true);
+            
         }
         catch(KeyNotFoundException)
         {

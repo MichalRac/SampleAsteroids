@@ -62,7 +62,6 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int value)
     {
         TotalScore += value;
-        Debug.Log($"TotalScore {TotalScore}, {value}");
         UIManager.Instance.UpdateScore();
     }
 
