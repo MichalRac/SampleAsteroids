@@ -14004,6 +14004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime: 2
+  audioToPlay: {fileID: 8300000, guid: 2db7dd2b185b2b040a9f404b797c889f, type: 3}
 --- !u!1 &7184520555531804376
 GameObject:
   m_ObjectHideFlags: 0

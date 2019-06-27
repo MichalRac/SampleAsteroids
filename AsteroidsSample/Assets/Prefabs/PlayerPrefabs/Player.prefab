@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 3367594478749139814}
   - {fileID: 1761079514694655865}
+  - {fileID: 3925074682222159243}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,6 +109,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bolt: {fileID: 2135891472393574677, guid: 18441c6f8d386304ea262fccffc2a3c8, type: 3}
   _boltSpawnPoint: {fileID: 1761079514694655865}
+  boltSound: {fileID: 8300000, guid: 4ffdc410fdd7e1a4d8aa8f15eb3dcc97, type: 3}
+--- !u!1 &4993978834760736397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3925074682222159243}
+  m_Layer: 9
+  m_Name: ThrusterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3925074682222159243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4993978834760736397}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4176411092193364211}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &7139117847576964439
 GameObject:
   m_ObjectHideFlags: 0
