@@ -6,11 +6,18 @@ using UnityEngine;
 public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
 {
     [SerializeField] private Particle particleOnDestroy;
-    private const float BASE_SPEED_MULTIPLIER_BOLT = 1.3f; // To ensure that in case of bullets the bullet is faster than the ship
+    // To ensure that in case of bullets the bullet is faster than the ship
+    private float BASE_SPEED_MULTIPLIER_BOLT; 
 
     protected override void Start()
     {
+        GetSettingsData();
         _rb.velocity = (_rb.velocity + transform.forward * basePlayerMovementSpeed) * BASE_SPEED_MULTIPLIER_BOLT;
+    }
+
+    public void GetSettingsData()
+    {
+        BASE_SPEED_MULTIPLIER_BOLT = DataSetupManager.Instance.InitData.boltSpeedMultiplier;
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -26,7 +33,6 @@ public class BoltBehaviour : ForwardingObjectsBehaviour, IDestroyable
         {
             destroyableObject.DestroyGameObject();
             DestroyGameObject();
-            Debug.Log($"{name} destroyed on collision with {other.name}");
         }
     }
 

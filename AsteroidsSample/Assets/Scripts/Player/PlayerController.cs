@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDestroyable
     private void OnEnable()
     {
         transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     // Update is called once per frame

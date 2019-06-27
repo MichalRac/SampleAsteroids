@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _wrapArea;
     [SerializeField] private GameObject _asteroidSpawner;
     [SerializeField] private GameObject _UIManagerPrefab;
-    [SerializeField] private int _triesTotal = 3;
-    private int _triesLeft = 3;
+    private int _triesTotal;
+    private int _triesLeft;
     /*
     private GameObject _playerHolder;
     private GameObject _wrapAreaHolder;
@@ -41,13 +41,32 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(_UIManagerPrefab);
+        GetSettingsData();;
 
+        Instantiate(_UIManagerPrefab);
         // Reusing the fields but removing the from inspector during runtime
         _player = Instantiate(_player);
         _wrapArea = Instantiate(_wrapArea);
         _asteroidSpawner = Instantiate(_asteroidSpawner);
         SetActiveMainObjects(false);
+
+        
+    }
+
+    public void GetSettingsData()
+    {
+        _triesTotal = DataSetupManager.Instance.InitData.numberOfLives;
+        _triesLeft = _triesTotal;
+
+        if (DataSetupManager.Instance.InitData.collisionBetweenAsteroids == true)
+        {
+            Physics.IgnoreLayerCollision(11, 11, false);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(11, 11, true);
+
+        }
     }
     #endregion
 
