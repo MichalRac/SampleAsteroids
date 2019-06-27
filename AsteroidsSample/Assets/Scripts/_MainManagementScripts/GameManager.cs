@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _UIManagerPrefab;
     private int _triesTotal;
     private int _triesLeft;
+    public int TriesLeft { get => _triesLeft; private set => _triesLeft = value; }
     /*
     private GameObject _playerHolder;
     private GameObject _wrapAreaHolder;
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
     public void BeginGame()
     {
         ScoreManager.Instance.ResetScore();
-        UIManager.Instance.UpdateScore();
+        UIManager.Instance.OnGameStarted();
         SetActiveMainObjects(true);
 
         /*
@@ -90,8 +91,9 @@ public class GameManager : MonoBehaviour
     // Call each time your ship is destroyed
     public void OnLostLife()
     {
-        ObjectPoolManager.DisableAllPooledObjects();
         _triesLeft--;
+        ObjectPoolManager.DisableAllPooledObjects();
+        UIManager.Instance.UpdateTries();
         if (_triesLeft > 0)
         {
             SetActiveMainObjects(false);
@@ -124,6 +126,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(2.0f);
+        UIManager.Instance.OnGameStarted();
         SetActiveMainObjects(true);
     }
 

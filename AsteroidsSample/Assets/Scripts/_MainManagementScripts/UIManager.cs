@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BasicPopup MainMenuPopup;
     [SerializeField] private BasicPopup GameFinishedPopup;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text triesText;
 
 
     private void Awake()
@@ -27,31 +28,61 @@ public class UIManager : MonoBehaviour
         MainMenuPopup = Instantiate(MainMenuPopup, transform);
         GameFinishedPopup = Instantiate(GameFinishedPopup, transform);
         scoreText = Instantiate(scoreText, transform);
+        triesText = Instantiate(triesText, transform);
     }
 
     private void Start()
     {
         MainMenuPopup.DisplayPopup(true);
+        DisplayIngameUI(false);
     }
     #endregion
 
     #region Main Control Methods
-    public void UpdateScore()
+
+    public void OnGameStarted()
     {
-        if(scoreText != null)
-        {
-            scoreText.text = $"Score: {ScoreManager.Instance.TotalScore.ToString()}";
-        }
+        DisplayIngameUI(true);
+        UpdateScore();
+        UpdateTries();
     }
 
     public void OnGameFinished()
     {
         GameFinishedPopup.DisplayPopup(true);
+        DisplayIngameUI(false);
+    }
+
+    public void UpdateScore()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"Score: {ScoreManager.Instance.TotalScore.ToString()}";
+        }
+    }
+
+    public void UpdateTries()
+    {
+        if (triesText != null)
+        {
+            triesText.text = $"Tries left: {GameManager.Instance.TriesLeft.ToString()}";
+        }
+    }
+
+    #endregion
+
+    #region Helper methods
+
+    public void DisplayIngameUI(bool value)
+    {
+        scoreText.gameObject.SetActive(value);
+        triesText.gameObject.SetActive(value);
     }
 
     public void showMainMenuPopup()
     {
         MainMenuPopup.DisplayPopup(true);
     }
+
     #endregion
 }
